@@ -1,0 +1,41 @@
+<%- include("header") -%>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Hugo 0.88.1">
+    
+    <title>ToDoList</title>
+    <link href="https://fonts.googleapis.com/css2?family=Red+Hat+Mono:ital,wght@0,500;1,300&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Kalam&display=swap" rel="stylesheet">
+  
+  </head> 
+  <div class="box" id="heading">
+    <h1> <%= listTitle %> </h1>
+  </div>
+
+  <div class="box">
+
+
+  <%  newListItems.forEach(function(item){ %>
+
+    <form action="/delete" method="post">
+      <div class="item">
+        <input type="checkbox" name="checkbox" value="<%=item._id%>" onChange="this.form.submit()">
+        <p><%=item.name%></p>
+      </div>
+      <input type="hidden" name="listName" value="<%= listTitle %>"></input>
+    </form>
+  <%  }) %>
+
+
+      <form class="item" action="/" method="post">
+        <input type="text" name="newItem" placeholder="New Item" autocomplete="off">
+        <button type="submit" name="list" value="<%= listTitle %>">+</button>
+      </form>
+  </div>
+
+<%- include("footer") -%>
